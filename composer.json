@@ -1,0 +1,20 @@
+{
+    "name": "uladzislau/sign-up-in",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "uvarats,",
+            "email": "uladzislauvarats@gmail.com"
+        }
+    ],
+    "require": {
+        "php-di/php-di": "^6.4",
+        "twig/twig": "^3.4",
+        "friendsofphp/php-cs-fixer": "^3.10",
+        "vlucas/phpdotenv": "^5.4"
+    }
+}
