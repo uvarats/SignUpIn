@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\View;
@@ -10,7 +12,8 @@ class MainController
     {
     }
 
-    public function mainPage() {
+    public function mainPage()
+    {
         echo View::getTwig()->render('index.html.twig');
     }
 }

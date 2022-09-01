@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 use App\Exception\Router\RouteNotFoundException;
@@ -24,7 +26,8 @@ class Router
         return $this;
     }
 
-    public function registerRoutes(array $routes) {
+    public function registerRoutes(array $routes)
+    {
         foreach ($routes as $route) {
             $this->registerRoute($route[0], $route[1], $route[2]);
         }
@@ -38,22 +41,23 @@ class Router
      * @throws DependencyException
      * @throws NotFoundException
      */
-    public function resolve(string $requestPath, string $requestMethod) {
+    public function resolve(string $requestPath, string $requestMethod)
+    {
         $action = $this->routes[$requestMethod][$requestPath] ?? null;
 
-        if(!$action) {
+        if (!$action) {
             throw new RouteNotFoundException();
         }
 
-        if(is_callable($action)) {
+        if (is_callable($action)) {
             $this->container->call($action);
         }
 
         [$class, $method] = $action;
 
-        if(class_exists($class)) {
+        if (class_exists($class)) {
             $class = $this->container->get($class);
-            if(method_exists($class, $method)) {
+            if (method_exists($class, $method)) {
                 return call_user_func_array([$class, $method], []);
             }
         }

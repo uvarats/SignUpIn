@@ -15,6 +15,9 @@
         "php-di/php-di": "^6.4",
         "twig/twig": "^3.4",
         "friendsofphp/php-cs-fixer": "^3.10",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "salsify/json-streaming-parser": "^8.2",
+        "cerbero/json-objects": "*",
+        "ext-json": "*"
     }
 }

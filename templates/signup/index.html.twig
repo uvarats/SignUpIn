@@ -9,28 +9,30 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+        <script src="js/signup.js"></script>
     {% endblock %}
 </head>
 <body>
 {% block body %}
     <div class="container d-flex justify-content-center">
         <main class="">
-            <form>
+            <form id="signupForm">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="login" placeholder="Login" required>
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Login" required>
                     <label for="login">Login</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="name" placeholder="Name" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
                     <label for="name">Name</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                     <label for="email">Email</label>
                 </div>
                 <div class="d-flex flex-row">
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                         <label for="password">Password</label>
                     </div>
                     <div class="form-floating mb-3 ms-3">

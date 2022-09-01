@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class View
 {
@@ -17,13 +20,12 @@ class View
      */
     public static function getTwig(): Environment
     {
-        if(is_null(self::$twigEnv)) {
-            $loader = new \Twig\Loader\FilesystemLoader(VIEWS_PATH);
-            self::$twigEnv = new \Twig\Environment($loader, [
+        if (is_null(self::$twigEnv)) {
+            $loader = new FilesystemLoader(VIEWS_PATH);
+            self::$twigEnv = new Environment($loader, [
 //                'cache' => VIEWS_PATH . '/cache',
             ]);
         }
         return self::$twigEnv;
     }
-
 }
