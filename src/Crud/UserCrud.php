@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Crud;
 
 use App\Entity\User;
-use App\Exception\Entity\FieldNotUnique;
+use App\Exception\Entity\FieldNotUniqueException;
 use Cerbero\JsonObjects\JsonObjects;
 use JsonStreamingParser\Parser;
 
 class UserCrud
 {
     /**
-     * @throws FieldNotUnique
+     * @throws FieldNotUniqueException
      */
     public function add(User $user)
     {
@@ -22,10 +22,10 @@ class UserCrud
             $login = $user->getLogin();
             $email = $user->getEmail();
             if (in_array($login, $userArray)) {
-                throw new FieldNotUnique("login", "This login is occupied");
+                throw new FieldNotUniqueException("login", "This login is occupied");
             }
             if (in_array($email, $userArray)) {
-                throw new FieldNotUnique("email", "This email is occupied");
+                throw new FieldNotUniqueException("email", "This email is occupied");
             }
         }
         $users[] = $user->jsonSerialize();

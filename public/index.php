@@ -1,15 +1,16 @@
 <?php
 
+use App\Annotation\Validator\Email;
+use App\Annotation\Validator\Required;
 use App\Controller\LoginController;
 use App\Controller\MainController;
 use App\Controller\RegisterController;
-use App\Crud\UserCrud;
 use App\Entity\User;
 use App\Exception\Router\RouteNotFoundException;
 use App\Router;
-use Cerbero\JsonObjects\JsonObjects;
-use Composer\Autoload\ClassLoader;
+use App\Validator\UserValidator;
 use DI\Container;
+use Doctrine\Common\Annotations\AnnotationReader;
 use Dotenv\Dotenv;
 
 require '../vendor/autoload.php';
@@ -33,7 +34,6 @@ $path = $_SERVER['PATH_INFO'] ?? '/';
 
 try {
     $router->resolve($path, $_SERVER['REQUEST_METHOD']);
-}
-catch (RouteNotFoundException $exception) {
+} catch (RouteNotFoundException $exception) {
     echo $exception->getMessage();
 }

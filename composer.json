@@ -18,6 +18,7 @@
         "vlucas/phpdotenv": "^5.4",
         "salsify/json-streaming-parser": "^8.2",
         "cerbero/json-objects": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "doctrine/annotations": "^1.13"
     }
 }

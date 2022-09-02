@@ -4,11 +4,37 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Annotation\Validator\Email;
+use App\Annotation\Validator\MinLength;
+use App\Annotation\Validator\Regex;
+use App\Annotation\Validator\Required;
+
 class User implements \JsonSerializable
 {
+    /**
+     * @Required
+     * @MinLength(6, "This field must contain at least 6 characters")
+     */
     private string $login;
+
+    /**
+     * @Required
+     * @Regex("/^([a-zA-Z]+)$/", "This field must contain only letters")
+     * @MinLength(2)
+     */
     private string $name;
+
+    /**
+     * @Required
+     * @Email
+     */
     private string $email;
+
+    /**
+     * @Required
+     * @Regex("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/", "This field must contain at least one letter and number")
+     * @MinLength(6)
+     */
     private string $password;
 
     public function __construct()
