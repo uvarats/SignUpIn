@@ -8,8 +8,10 @@ use App\Controller\RegisterController;
 use App\Crud\UserCrud;
 use App\Entity\User;
 use App\Exception\Router\RouteNotFoundException;
+use App\Json;
 use App\Router;
 use App\Service\PasswordService;
+use App\Service\UserService;
 use App\Validator\UserValidator;
 use Cerbero\JsonObjects\JsonObjects;
 use DI\Container;
@@ -18,14 +20,14 @@ use Dotenv\Dotenv;
 
 require '../vendor/autoload.php';
 
+session_start();
+
 $dotenv = $dotenv = Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 const VIEWS_PATH = '../templates';
 $container = new Container();
 $router = new Router($container);
-
-var_dump($_SESSION);
 
 $router->registerRoutes([
     ['/signin', 'GET', [LoginController::class, 'signinPage']],
@@ -39,8 +41,15 @@ $router->registerRoutes([
 
 $path = $_SERVER['PATH_INFO'] ?? '/';
 
+if (!file_exists($_ENV['USERS_FILE'])) {
+    file_put_contents($_ENV['USERS_FILE'], Json::encode([
+        'last_id' => 0,
+        'users' => [],
+    ]));
+}
+
 try {
     $router->resolve($path, $_SERVER['REQUEST_METHOD']);
 } catch (RouteNotFoundException $exception) {
-    echo $exception->getMessage();
+    header("HTTP/1.1 404 Not Found");
 }

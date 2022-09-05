@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Crud\UserCrud;
 use App\Exception\Entity\FieldNotUniqueException;
+use App\Service\PasswordService;
 use App\Service\UserService;
 use App\Validator\UserValidator;
 use App\View;
@@ -42,28 +43,6 @@ class RegisterController
     public function formSubmit(): void
     {
         header('Content-Type: application/json; charset=utf-8');
-        $validator = new UserValidator();
-        $isSuccessful = $validator->validate($_POST);
-        if ($isSuccessful) {
-            $user = $this->userService->getFromArray($_POST);
-            try {
-                $this->crud->add($user);
-            } catch (FieldNotUniqueException $e) {
-                echo json_encode([
-                    'errors' => [
-                        $e->getField() => [$e->getMessage()],
-                    ],
-                ]);
-                return;
-            }
-
-            echo json_encode([
-                'success' => true,
-            ]);
-            return;
-        }
-        echo json_encode([
-            'errors' => $validator->getErrors(),
-        ]);
+        echo $this->userService->register();
     }
 }

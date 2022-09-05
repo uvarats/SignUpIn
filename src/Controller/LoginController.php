@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Json;
+use App\Service\UserService;
 use App\View;
 
 class LoginController
 {
-    public function __construct()
+    private UserService $userService;
+
+    public function __construct(UserService $userService)
     {
+        $this->userService = $userService;
     }
 
     public function signinPage()
@@ -21,11 +25,28 @@ class LoginController
     public function formSubmit()
     {
         header('Content-Type: application/json; charset=utf-8');
+        $isSuccessful = $this->userService->authenticate($_POST);
 
-        echo Json::encode($_POST);
+        if ($isSuccessful) {
+            echo Json::encode([
+                'success' => true,
+            ]);
+            return;
+        }
+
+        echo Json::encode([
+            'errors' => $this->userService->getAuthErrors()
+        ]);
     }
 
     public function logout()
     {
+        $redirectTo = $_SERVER['HTTP_REFERER'] ?? '/';
+
+        header('Location: ' . $redirectTo, true, 301);
+
+        session_destroy();
+        
+        echo "<script>window.location.replace('$redirectTo')</script>";
     }
 }

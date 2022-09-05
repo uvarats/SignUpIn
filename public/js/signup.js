@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
-    let form = document.getElementById('signupForm');
-    form.addEventListener('submit', submit);
+    let submitBtn = document.getElementById('submitBtn');
+    submitBtn.addEventListener('click', submit);
 });
 
 async function submit(event) {
@@ -24,19 +24,4 @@ async function submit(event) {
             });
         }
     });
-}
-
-function error(field, message) {
-    let element = document.getElementById(field);
-    let div = element.querySelectorAll('.errors')[0];
-    if (div) {
-        div.innerText = message;
-    }
-}
-
-function clearErrors() {
-    let elements = document.querySelectorAll('.errors');
-    if (elements.length > 0) {
-        Object.values(elements).forEach(e => e.innerText = "")
-    }
 }

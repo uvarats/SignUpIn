@@ -10,31 +10,38 @@
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+            <script src="js/errors.js"></script>
             <script src="js/signin.js"></script>
         {% endblock %}
     </head>
     <body>
         {% block body %}
-            <div class="container d-flex">
-                <main class="form">
-                    <form id="signinForm">
-                        <div class="form-floating mb-3" id="login">
-                            <input type="text" class="form-control" id="loginField" name="login" placeholder="Login" required>
-                            <label for="loginField">Login</label>
-                            <div class="text-danger errors"></div>
-                        </div>
-                        <div class="form-floating mb-3" id="password">
-                            <input type="password" class="form-control" id="passwordField" name="password" placeholder="Password" required>
-                            <label for="passwordField">Password</label>
-                            <div class="text-danger errors"></div>
-                        </div>
-                        <div class="text-center mb-3">
-                            <a href="/signup">Still not registered?</a>
-                        </div>
-                        <button type="submit" class="btn btn-lg btn-primary w-100">Login</button>
-                    </form>
-                </main>
-            </div>
+            {% if not session['login'] %}
+                <div class="container d-flex">
+                    <main class="form">
+                        <form id="signinForm">
+                            <div class="form-floating mb-3" id="login">
+                                <input type="text" class="form-control" id="loginField" name="login" placeholder="Login" required>
+                                <label for="loginField">Login</label>
+                                <div class="text-danger errors"></div>
+                            </div>
+                            <div class="form-floating mb-3" id="password">
+                                <input type="password" class="form-control" id="passwordField" name="password" placeholder="Password" required>
+                                <label for="passwordField">Password</label>
+                                <div class="text-danger errors"></div>
+                            </div>
+                            <div class="text-center mb-3">
+                                <a href="/signup">Still not registered?</a>
+                            </div>
+                            <button type="button" class="btn btn-lg btn-primary w-100" id="submitBtn">Login</button>
+                        </form>
+                    </main>
+                </div>
+            {% else %}
+                <span>Hello, {{ session['name'] }}!</span>
+                <a href="/logout">Logout</a>
+            {% endif %}
+
         {% endblock %}
     </body>
 </html>

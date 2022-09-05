@@ -1,12 +1,12 @@
 {
-    "last_id": 9,
-    "users": {
-        "0": {
-            "id": 8,
+    "last_id": 1,
+    "users": [
+        {
+            "id": 0,
             "login": "uvarats",
             "name": "Uladzislau",
             "email": "uvarats@gmail.com",
-            "password": "$2y$10$XHop7mz12F9fVkOpjf2pFOO2BDPXrJOFaVHi.vXgoFO5J/mvCiyVe"
+            "password": "$2y$10$9us4VdovlRqn3EocR7NQj.KrNjinGuwxo.Di1hR4Vo2i09YxGr3wi"
         }
-    }
+    ]
 }
