@@ -42,11 +42,8 @@ class LoginController
     public function logout()
     {
         $redirectTo = $_SERVER['HTTP_REFERER'] ?? '/';
-
         header('Location: ' . $redirectTo, true, 301);
 
         session_destroy();
-        
-        echo "<script>window.location.replace('$redirectTo')</script>";
     }
 }
