@@ -2,7 +2,9 @@
 
 namespace App\Exception\Validator;
 
-class FieldValidationException extends \Exception
+use Exception;
+
+class FieldValidationException extends Exception
 {
     private string $field;
 

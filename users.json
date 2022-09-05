@@ -1,26 +1,12 @@
-[
-    {
-        "login": "uvarats",
-        "name": "Uladzislau",
-        "email": "uladzislauvarats@gmail.com",
-        "password": "$2y$10$CT3ncTYmORqC2cXbgMe2c.nMin4lStF4lXJvOBHyXWAsDakMXQXqG"
-    },
-    {
-        "login": "uvarats1",
-        "name": "Uladzislau",
-        "email": "uladzislauvarats1@gmail.com",
-        "password": "$2y$10$eubAS1W7JwXtsQEBqu/eVOm.a4ON65Rd/WIw2qXpRByjdXGY07bFG"
-    },
-    {
-        "login": "uvarats2",
-        "name": "Uladzislau",
-        "email": "uladzislauvarats2@gmail.com",
-        "password": "$2y$10$U6.FTyeMjS7PwLQUvHVpM.9lnrwaa6hmf7trJfxWGUam8eWBOCSe6"
-    },
-    {
-        "login": "uvarats3",
-        "name": "Uladzislau",
-        "email": "uladzislauvarats3@gmail.com",
-        "password": "$2y$10$GkQW9wXaUyTup4xNVwoXdObOQrpSWCw3CTr8dFJVuVqghJUCRMcgO"
+{
+    "last_id": 9,
+    "users": {
+        "0": {
+            "id": 8,
+            "login": "uvarats",
+            "name": "Uladzislau",
+            "email": "uvarats@gmail.com",
+            "password": "$2y$10$XHop7mz12F9fVkOpjf2pFOO2BDPXrJOFaVHi.vXgoFO5J/mvCiyVe"
+        }
     }
-]
+}

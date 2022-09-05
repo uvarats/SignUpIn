@@ -8,6 +8,7 @@ use App\Annotation\Validator\ValidationAnnotation;
 use App\Entity\User;
 use App\Exception\Validator\FieldValidationException;
 use Doctrine\Common\Annotations\AnnotationReader;
+use ReflectionClass;
 
 class UserValidator
 {
@@ -20,12 +21,13 @@ class UserValidator
 
 
     /**
-     * @throws FieldValidationException
+     * @param array $data
+     * @return bool
      */
     public function validate(array $data): bool
     {
         $reader = new AnnotationReader();
-        $class = new \ReflectionClass(User::class);
+        $class = new ReflectionClass(User::class);
         foreach ($class->getProperties() as $property) {
             $field = $property->getName();
 

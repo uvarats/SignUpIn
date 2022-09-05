@@ -5,10 +5,13 @@ use App\Annotation\Validator\Required;
 use App\Controller\LoginController;
 use App\Controller\MainController;
 use App\Controller\RegisterController;
+use App\Crud\UserCrud;
 use App\Entity\User;
 use App\Exception\Router\RouteNotFoundException;
 use App\Router;
+use App\Service\PasswordService;
 use App\Validator\UserValidator;
+use Cerbero\JsonObjects\JsonObjects;
 use DI\Container;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Dotenv\Dotenv;
@@ -22,10 +25,14 @@ const VIEWS_PATH = '../templates';
 $container = new Container();
 $router = new Router($container);
 
+var_dump($_SESSION);
+
 $router->registerRoutes([
     ['/signin', 'GET', [LoginController::class, 'signinPage']],
+    ['/signin/submit', 'POST', [LoginController::class, 'formSubmit']],
     ['/signup', 'GET', [RegisterController::class, 'signupPage']],
     ['/signup/submit', 'POST', [RegisterController::class, 'formSubmit']],
+    ['/logout', 'GET', [LoginController::class, 'logout']],
     ['/', 'GET', [MainController::class, 'mainPage']]
 ]);
 

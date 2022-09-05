@@ -8,9 +8,12 @@ use App\Annotation\Validator\Email;
 use App\Annotation\Validator\MinLength;
 use App\Annotation\Validator\Regex;
 use App\Annotation\Validator\Required;
+use JsonSerializable;
 
-class User implements \JsonSerializable
+class User implements JsonSerializable
 {
+    private ?int $id = null;
+
     /**
      * @Required
      * @MinLength(6, "This field must contain at least 6 characters")
@@ -116,5 +119,23 @@ class User implements \JsonSerializable
     public function jsonSerialize()
     {
         return get_object_vars($this);
+    }
+
+    /**
+     * @param int|null $id
+     * @return User
+     */
+    public function setId(?int $id): User
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }

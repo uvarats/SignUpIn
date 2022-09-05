@@ -5,26 +5,38 @@ window.addEventListener('load', function () {
 
 async function submit(event) {
     event.preventDefault();
+    clearErrors();
+
     let form = document.getElementById('signupForm');
     let formData = new FormData(form);
+    if(formData.get('password') !== formData.get('passwordConfirmation')) {
+        error('password', "Passwords doesn't match!");
+        return;
+    }
+
     axios.post('/signup/submit', formData).then(r => {
         if (r.data.success) {
           location.replace('/signin');
         }
         if (r.data.errors) {
-            let elements = document.getElementsByClassName('text-danger');
-            if (elements.length > 0) {
-                Object.values(elements).forEach(e => e.innerText = "")
-            }
-
             Object.keys(r.data.errors).forEach(function (key) {
-                let element = document.getElementById(key);
-                let parent = element.closest('.form-floating');
-                let div = parent.getElementsByClassName('text-danger')[0];
-                if (div) {
-                    div.innerText = r.data.errors[key][0];
-                }
+                error(key, r.data.errors[key][0]);
             });
         }
     });
+}
+
+function error(field, message) {
+    let element = document.getElementById(field);
+    let div = element.querySelectorAll('.errors')[0];
+    if (div) {
+        div.innerText = message;
+    }
+}
+
+function clearErrors() {
+    let elements = document.querySelectorAll('.errors');
+    if (elements.length > 0) {
+        Object.values(elements).forEach(e => e.innerText = "")
+    }
 }

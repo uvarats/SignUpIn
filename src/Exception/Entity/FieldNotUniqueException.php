@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Exception\Entity;
 
-class FieldNotUniqueException extends \Exception
+use Exception;
+
+class FieldNotUniqueException extends Exception
 {
     private string $field;
     public function __construct(string $field, string $message)

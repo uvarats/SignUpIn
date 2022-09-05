@@ -20,9 +20,12 @@ class Required extends ValidationAnnotation
         parent::__construct($message);
     }
 
-
+    /**
+     * @param string|null $data
+     * @return bool
+     */
     public function validate(?string $data): bool
     {
-        return !is_null($data);
+        return !empty($data);
     }
 }
