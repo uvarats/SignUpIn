@@ -1,5 +1,5 @@
 {
-    "last_id": 1,
+    "last_id": 2,
     "users": [
         {
             "id": 0,
@@ -7,6 +7,13 @@
             "name": "Uladzislau",
             "email": "uvarats@gmail.com",
             "password": "$2y$10$9us4VdovlRqn3EocR7NQj.KrNjinGuwxo.Di1hR4Vo2i09YxGr3wi"
+        },
+        {
+            "id": 1,
+            "login": "vlad_pidor",
+            "name": "pidor",
+            "email": "pidor@g123a.ru",
+            "password": "$2y$10$FO5Sv0XtXQLDTPJ2EfNfG.fmaamnm3Bli2sP1Q.1EzTICLEzYViYW"
         }
     ]
 }

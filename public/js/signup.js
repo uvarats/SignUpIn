@@ -1,6 +1,8 @@
 window.addEventListener('load', function () {
     let submitBtn = document.getElementById('submitBtn');
-    submitBtn.addEventListener('click', submit);
+    if (submitBtn) {
+        submitBtn.addEventListener('click', submit);
+    }
 });
 
 async function submit(event) {
